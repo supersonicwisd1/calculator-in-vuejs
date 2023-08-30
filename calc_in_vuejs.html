@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Type 2 numbers and choose operation</h1>
+        <form class="form-inline">
+            <input v-model="a" number class="form-control" @keyup.enter="calculate">
+            <select v-model="operator" number class="form-control">
+                <option selected>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+            </select>
+            <input v-model="b" number class="form-control" @keyup.enter="calculate">
+
+            <!-- <button type="submit" @click="calculate" class="btn btn-primary">
+                calculate
+            </button> -->
+        </form>
+
+        <h2>Result: {{a}} {{operator}} {{b}} = {{c}}</h2>
+        <pre>{{ $data | json }}</pre>
+    </div>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+<script type="text/javascript">
+    new Vue({
+    el: ".container",
+    data: {
+        a: 1,
+        b: 2,
+        operator: " "
+    },
+    computed: {
+        c: function(){
+            switch (this.operator){
+                case "+": 
+                return  this.a + this.b 
+                break;
+                case "-": 
+                return  this.a - this.b 
+                break;
+                case "*": 
+                return  this.a * this.b 
+                break;
+                case "/": 
+                return  this.a / this.b 
+                break;
+            }
+        }
+    }
+    })
+</script>
